@@ -1,0 +1,72 @@
+package ${package.ServiceImpl};
+
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import org.springframework.stereotype.Service;
+
+/**
+ * <p>
+ * $!{table.comment} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+#if(${kotlin})
+open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
+
+}
+#else
+public class ${table.serviceImplName}  implements ${table.serviceName} {
+
+        @Autowired
+        ${entity}Mapper mapper;
+
+        @Override
+        public  Response${entity} add(Req${entity}Add reqAdd){
+            ${entity} add = BeanUtil.copy(reqAdd, ${entity}.class);
+
+            add.setStatus(CommonConstant.DB_STATUS_NORMAL);
+            add.setId(UUIDGenerator.generate());
+            int result = mapper.insert(add);
+            if(result == 1){
+                return BeanUtil.copy(add, Response${entity}.class);
+            }else {
+                throw new DnConsoleException(ResultCode.DB_CREAT_DATA_FAIL.getMessage());
+            }
+        }
+
+        @Override
+        public Response${entity} modify(String id, Req${entity}Update reqUpdate){
+            ${entity} data = mapper.selectByPrimaryKey(id);
+            if(data == null ){
+                throw new DnConsoleException(ResultCode.DATA_NOT_EXIST.getMessage());
+            }
+            ${entity} upData = BeanUtil.copy(reqUpdate, ${entity}.class);
+            int result = mapper.updateByPrimaryKey(upData);
+            if(result == 1){
+                return BeanUtil.copy(upData, Response${entity}.class);
+            }else {
+                throw new DnConsoleException(ResultCode.DB_UPDATE_DATA_FAIL.getMessage());
+            }
+        }
+
+        @Override
+        public Response${entity} findByParams(Req${entity}Query params){
+        ${entity} data = mapper.selectByParams(BeanUtil.beanToMap(params));
+            if(data != null){
+                Response${entity} response${entity} = BeanUtil.copy(data, Response${entity}.class);
+                return response${entity};
+            }else {
+                throw new DnConsoleException(ResultCode.DATA_NOT_EXIST.getMessage());
+            }
+        }
+
+        @Override
+        public boolean remove(String id) {
+        return mapper.deleteByPrimaryKey(id) == 1;
+        }
+}
+#end
