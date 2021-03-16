@@ -1,0 +1,4 @@
+## autoconfig
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.wwh.redission.RedissonAutoConfiguration

@@ -16,6 +16,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>common-core</module>
+        <module>cy-redis-spring-boot-start</module>
     </modules>
 
 
