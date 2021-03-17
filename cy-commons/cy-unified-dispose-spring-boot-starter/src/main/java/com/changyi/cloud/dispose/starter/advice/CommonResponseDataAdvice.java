@@ -59,6 +59,7 @@ public class CommonResponseDataAdvice implements ResponseBodyAdvice<Object> {
         }
         // string 特殊处理 java.lang.ClassCastException: Result cannot be cast to java.lang.String
         if (o instanceof String) {
+            serverHttpResponse.getHeaders().set("content-type", MediaType.APPLICATION_JSON_VALUE);
             return JSON.toJSON(Result.ofSuccess(o)).toString();
         }
         return Result.ofSuccess(o);
