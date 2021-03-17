@@ -38,4 +38,10 @@ public class DemoController {
 		return "three";
 	}
 
+
+	@GetMapping(value = "cy/four")
+	public void four() {
+		System.out.println("four");
+	}
+
 }
