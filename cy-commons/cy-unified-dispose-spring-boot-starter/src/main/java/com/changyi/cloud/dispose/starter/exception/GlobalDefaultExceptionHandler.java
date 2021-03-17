@@ -45,8 +45,7 @@ public class GlobalDefaultExceptionHandler {
      */
     @ExceptionHandler(value = NoHandlerFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Result handlerNoHandlerFoundException(NoHandlerFoundException e) throws Throwable {
-        errorDispose(e);
+    public Result handlerNoHandlerFoundException(NoHandlerFoundException e) {
         outPutErrorWarn(NoHandlerFoundException.class, UserOperateErrorCode.NOT_FOUND, e);
         return Result.ofFail(UserOperateErrorCode.NOT_FOUND);
     }
