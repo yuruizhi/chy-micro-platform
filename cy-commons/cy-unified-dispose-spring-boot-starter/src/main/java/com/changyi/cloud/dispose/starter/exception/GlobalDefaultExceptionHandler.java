@@ -3,7 +3,8 @@ package com.changyi.cloud.dispose.starter.exception;
 import com.changyi.cloud.dispose.starter.Result;
 import com.changyi.cloud.dispose.starter.annotation.IgnoreResponseAdvice;
 import com.changyi.cloud.dispose.starter.exception.category.BusinessException;
-import com.changyi.cloud.dispose.starter.exception.error.CommonErrorCode;
+import com.changyi.cloud.dispose.starter.exception.error.common.service.ServiceErrorCode;
+import com.changyi.cloud.dispose.starter.exception.error.common.user.UserOperateErrorCode;
 import com.changyi.cloud.dispose.starter.exception.error.details.BusinessErrorCode;
 import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
@@ -46,8 +47,8 @@ public class GlobalDefaultExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Result handlerNoHandlerFoundException(NoHandlerFoundException e) throws Throwable {
         errorDispose(e);
-        outPutErrorWarn(NoHandlerFoundException.class, CommonErrorCode.NOT_FOUND, e);
-        return Result.ofFail(CommonErrorCode.NOT_FOUND);
+        outPutErrorWarn(NoHandlerFoundException.class, UserOperateErrorCode.NOT_FOUND, e);
+        return Result.ofFail(UserOperateErrorCode.NOT_FOUND);
     }
 
     /**
@@ -57,8 +58,8 @@ public class GlobalDefaultExceptionHandler {
     public Result handlerHttpRequestMethodNotSupportedException(
             HttpRequestMethodNotSupportedException e) {
         outPutErrorWarn(HttpRequestMethodNotSupportedException.class,
-                CommonErrorCode.METHOD_NOT_ALLOWED, e);
-        return Result.ofFail(CommonErrorCode.METHOD_NOT_ALLOWED);
+                UserOperateErrorCode.METHOD_NOT_ALLOWED, e);
+        return Result.ofFail(UserOperateErrorCode.METHOD_NOT_ALLOWED);
     }
 
     /**
@@ -69,8 +70,8 @@ public class GlobalDefaultExceptionHandler {
             HttpMediaTypeNotSupportedException e) throws Throwable {
         errorDispose(e);
         outPutErrorWarn(HttpMediaTypeNotSupportedException.class,
-                CommonErrorCode.UNSUPPORTED_MEDIA_TYPE, e);
-        return Result.ofFail(CommonErrorCode.UNSUPPORTED_MEDIA_TYPE);
+                UserOperateErrorCode.UNSUPPORTED_MEDIA_TYPE, e);
+        return Result.ofFail(UserOperateErrorCode.UNSUPPORTED_MEDIA_TYPE);
     }
 
     /**
@@ -90,8 +91,8 @@ public class GlobalDefaultExceptionHandler {
         if (cause instanceof FeignException) {
             return handlerFeignException((FeignException) cause);
         }
-        outPutError(Exception.class, CommonErrorCode.USER_ERROR_A0500, throwable);
-        return Result.ofFail(CommonErrorCode.USER_ERROR_A0500);
+        outPutError(Exception.class, UserOperateErrorCode.USER_ERROR_A0500, throwable);
+        return Result.ofFail(UserOperateErrorCode.USER_ERROR_A0500);
     }
 
     /**
@@ -100,8 +101,8 @@ public class GlobalDefaultExceptionHandler {
     @ExceptionHandler(value = FeignException.class)
     public Result handlerFeignException(FeignException e) throws Throwable {
         errorDispose(e);
-        outPutError(FeignException.class, CommonErrorCode.SERVICE_ERROR_C0001, e);
-        return Result.ofFail(CommonErrorCode.SERVICE_ERROR_C0001);
+        outPutError(FeignException.class, ServiceErrorCode.SERVICE_ERROR_C0001, e);
+        return Result.ofFail(ServiceErrorCode.SERVICE_ERROR_C0001);
     }
 
     /**
@@ -120,10 +121,10 @@ public class GlobalDefaultExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public Result handleHttpMessageNotReadableException(HttpMessageNotReadableException e) throws Throwable {
         errorDispose(e);
-        outPutError(HttpMessageNotReadableException.class, CommonErrorCode.USER_ERROR_A0400, e);
-        String msg = String.format("%s : 错误详情( %s )", CommonErrorCode.USER_ERROR_A0400.getMessage(),
+        outPutError(HttpMessageNotReadableException.class, UserOperateErrorCode.USER_ERROR_A0400, e);
+        String msg = String.format("%s : 错误详情( %s )", UserOperateErrorCode.USER_ERROR_A0400.getMessage(),
                 e.getRootCause().getMessage());
-        return Result.ofFail(CommonErrorCode.USER_ERROR_A0400.getCode(), msg);
+        return Result.ofFail(UserOperateErrorCode.USER_ERROR_A0400.getCode(), msg);
     }
 
     /**
@@ -136,7 +137,7 @@ public class GlobalDefaultExceptionHandler {
 
         if (constraintViolations.isEmpty()) {
             log.error("validExceptionHandler error fieldErrors is empty");
-            return Result.ofFail(BusinessErrorCode.BUSINESS_ERROR);
+            return Result.ofFail(UserOperateErrorCode.USER_ERROR_A0500);
         } else {
             List<Map<String, String>> list = new ArrayList<>();
             for (ConstraintViolation error : constraintViolations) {
@@ -148,7 +149,7 @@ public class GlobalDefaultExceptionHandler {
             if (log.isDebugEnabled()) {
                 log.error("参数异常 -> {}", list);
             }
-            return Result.ofFail(CommonErrorCode.USER_ERROR_A0400, list);
+            return Result.ofFail(UserOperateErrorCode.USER_ERROR_A0400, list);
         }
     }
 
@@ -168,7 +169,7 @@ public class GlobalDefaultExceptionHandler {
     @ExceptionHandler(BindException.class)
     public Result handleBindException(BindException e) throws Throwable {
         errorDispose(e);
-        outPutError(BindException.class, CommonErrorCode.USER_ERROR_A0400, e);
+        outPutError(BindException.class, UserOperateErrorCode.USER_ERROR_A0400, e);
         BindingResult bindingResult = e.getBindingResult();
         return getBindResultDTO(bindingResult);
     }
@@ -189,10 +190,10 @@ public class GlobalDefaultExceptionHandler {
                 log.error("参数异常 -> {}", list);
             }
 
-            return Result.ofFail(CommonErrorCode.USER_ERROR_A0400, list);
+            return Result.ofFail(UserOperateErrorCode.USER_ERROR_A0400, list);
         } else {
             log.error("validExceptionHandler error fieldErrors is empty");
-            return Result.ofFail(BusinessErrorCode.BUSINESS_ERROR);
+            return Result.ofFail(UserOperateErrorCode.USER_ERROR_A0500);
         }
     }
 

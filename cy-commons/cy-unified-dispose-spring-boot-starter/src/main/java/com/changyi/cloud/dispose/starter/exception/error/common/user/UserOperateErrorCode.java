@@ -1,19 +1,19 @@
-package com.changyi.cloud.dispose.starter.exception.error;
+package com.changyi.cloud.dispose.starter.exception.error.common.user;
 
+import com.changyi.common.core.base.IErrorCodeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
- * 异常枚举
+ * 用户错误代码
  *
- * @author <a href="mailto:yaoonlyi@gmail.com">purgeyao</a>
- * @since 1.0.0
+ * @author ZhangHao
+ * @date 2021/03/17
  */
 @Getter
 @AllArgsConstructor
-public enum CommonErrorCode {
-
+public enum UserOperateErrorCode implements IErrorCodeEnum {
     SUCCESS("00000", "成功"),
     USER_ERROR_0001("A0001", "用户端错误"),
     USER_ERROR_A0100("A0100", "用户注册错误"),
@@ -71,7 +71,7 @@ public enum CommonErrorCode {
     USER_ERROR_A0400("A0400", "用户请求参数错误"),
     USER_ERROR_A0401("A0401", "包含非法恶意跳转链接"),
     USER_ERROR_A0402("A0402", "无效的用户输入"),
-    NOT_FOUND("A0404", String.format("哎呀，无法找到这个资源啦(%s)", HttpStatus.NOT_FOUND.getReasonPhrase())),
+    NOT_FOUND("A0404",String.format("哎呀，无法找到这个资源啦(%s)", HttpStatus.NOT_FOUND.getReasonPhrase())),
     METHOD_NOT_ALLOWED("A0405", String.format("请换个姿势操作试试(%s)", HttpStatus.METHOD_NOT_ALLOWED.getReasonPhrase())),
     USER_ERROR_A0410("A0410", "请求必填参数为空"),
     USER_ERROR_A0411("A0411", "用户订单号为空"),
@@ -139,65 +139,10 @@ public enum CommonErrorCode {
     USER_ERROR_A1002("A1002", "用户麦克风异常"),
     USER_ERROR_A1003("A1003", "用户听筒异常"),
     USER_ERROR_A1004("A1004", "用户扬声器异常"),
-    USER_ERROR_A1005("A1005", "用户GPS定位异常"),
-    SYSTEM_ERROR_B0001("B0001", "系统执行出错"),
-    SYSTEM_ERROR_B0100("B0100", "系统执行超时"),
-    SYSTEM_ERROR_B0101("B0101", "系统订单处理超时"),
-    SYSTEM_ERROR_B0200("B0200", "系统容灾功能被触发"),
-    SYSTEM_ERROR_B0210("B0210", "系统限流"),
-    SYSTEM_ERROR_B0220("B0220", "系统功能降级"),
-    SYSTEM_ERROR_B0300("B0300", "系统资源异常"),
-    SYSTEM_ERROR_B0310("B0310", "系统资源耗尽"),
-    SYSTEM_ERROR_B0311("B0311", "系统磁盘空间耗尽"),
-    SYSTEM_ERROR_B0312("B0312", "系统内存耗尽"),
-    SYSTEM_ERROR_B0313("B0313", "文件句柄耗尽"),
-    SYSTEM_ERROR_B0314("B0314", "系统连接池耗尽"),
-    SYSTEM_ERROR_B0315("B0315", "系统线程池耗尽"),
-    SYSTEM_ERROR_B0320("B0320", "系统资源访问异常"),
-    SYSTEM_ERROR_B0321("B0321", "系统读取磁盘文件失败"),
-    SERVICE_ERROR_C0001("C0001", "调用第三方服务出错"),
-    SERVICE_ERROR_C0100("C0100", "中间件服务出错"),
-    SERVICE_ERROR_C0110("C0110", "RPC服务出错"),
-    SERVICE_ERROR_C0111("C0111", "RPC服务未找到"),
-    SERVICE_ERROR_C0112("C0112", "RPC服务未注册"),
-    SERVICE_ERROR_C0113("C0113", "接口不存在"),
-    SERVICE_ERROR_C0120("C0120", "消息服务出错"),
-    SERVICE_ERROR_C0121("C0121", "消息投递出错"),
-    SERVICE_ERROR_C0122("C0122", "消息消费出错"),
-    SERVICE_ERROR_C0123("C0123", "消息订阅出错"),
-    SERVICE_ERROR_C0124("C0124", "消息分组未查到"),
-    SERVICE_ERROR_C0130("C0130", "缓存服务出错"),
-    SERVICE_ERROR_C0131("C0131", "key长度超过限制"),
-    SERVICE_ERROR_C0132("C0132", "value长度超过限制"),
-    SERVICE_ERROR_C0133("C0133", "存储容量已满"),
-    SERVICE_ERROR_C0134("C0134", "不支持的数据格式"),
-    SERVICE_ERROR_C0140("C0140", "配置服务出错"),
-    SERVICE_ERROR_C0150("C0150", "网络资源服务出错"),
-    SERVICE_ERROR_C0151("C0151", "VPN服务出错"),
-    SERVICE_ERROR_C0152("C0152", "CDN服务出错"),
-    SERVICE_ERROR_C0153("C0153", "域名解析服务出错"),
-    SERVICE_ERROR_C0154("C0154", "网关服务出错"),
-    SERVICE_ERROR_C0200("C0200", "第三方系统执行超时"),
-    SERVICE_ERROR_C0210("C0210", "RPC执行超时"),
-    SERVICE_ERROR_C0220("C0220", "消息投递超时"),
-    SERVICE_ERROR_C0230("C0230", "缓存服务超时"),
-    SERVICE_ERROR_C0240("C0240", "配置服务超时"),
-    SERVICE_ERROR_C0250("C0250", "数据库服务超时"),
-    SERVICE_ERROR_C0300("C0300", "数据库服务出错"),
-    SERVICE_ERROR_C0311("C0311", "表不存在"),
-    SERVICE_ERROR_C0312("C0312", "列不存在"),
-    SERVICE_ERROR_C0321("C0321", "多表关联中存在多个相同名称的列"),
-    SERVICE_ERROR_C0331("C0331", "数据库死锁"),
-    SERVICE_ERROR_C0341("C0341", "主键冲突"),
-    SERVICE_ERROR_C0400("C0400", "第三方容灾系统被触发"),
-    SERVICE_ERROR_C0401("C0401", "第三方系统限流"),
-    SERVICE_ERROR_C0402("C0402", "第三方功能降级"),
-    SERVICE_ERROR_C0500("C0500", "通知服务出错"),
-    SERVICE_ERROR_C0501("C0501", "短信提醒服务失败"),
-    SERVICE_ERROR_C0502("C0502", "语音提醒服务失败"),
-    SERVICE_ERROR_C0503("C0503", "邮件提醒服务失败");
+    USER_ERROR_A1005("A1005", "用户GPS定位异常");
 
     private String code;
 
     private String message;
 }
+

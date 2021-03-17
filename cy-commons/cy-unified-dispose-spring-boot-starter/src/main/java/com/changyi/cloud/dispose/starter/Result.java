@@ -3,8 +3,8 @@ package com.changyi.cloud.dispose.starter;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.changyi.cloud.dispose.starter.exception.error.CommonErrorCode;
-import com.changyi.cloud.dispose.starter.exception.error.details.BusinessErrorCode;
+import com.changyi.common.core.base.IErrorCodeEnum;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -14,6 +14,7 @@ import java.io.Serializable;
  * @author <a href="mailto:yaoonlyi@gmail.com">purgeyao</a>
  * @since 1.0.0
  */
+@Data
 public class Result<T> implements Serializable {
 
     /**
@@ -41,57 +42,6 @@ public class Result<T> implements Serializable {
      */
     private String msg;
 
-    public Boolean getSucc() {
-        return succ;
-    }
-
-    public void setSucc(Boolean succ) {
-        this.succ = succ;
-    }
-
-    public Long getTs() {
-        return ts;
-    }
-
-    public void setTs(Long ts) {
-        this.ts = ts;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public Result() {
-    }
-
-    public Result(Boolean succ, Long ts, T data, String code, String msg) {
-        this.succ = succ;
-        this.ts = ts;
-        this.data = data;
-        this.code = code;
-        this.msg = msg;
-    }
-
     public static Result ofSuccess() {
         Result result = new Result();
         result.succ = true;
@@ -113,7 +63,7 @@ public class Result<T> implements Serializable {
         return result;
     }
 
-    public static Result ofFail(CommonErrorCode resultEnum, Object data) {
+    public static Result ofFail(IErrorCodeEnum resultEnum, Object data) {
         Result result = new Result();
         result.succ = false;
         result.code = resultEnum.getCode();
@@ -122,15 +72,7 @@ public class Result<T> implements Serializable {
         return result;
     }
 
-    public static Result ofFail(CommonErrorCode resultEnum) {
-        Result result = new Result();
-        result.succ = false;
-        result.code = resultEnum.getCode();
-        result.msg = resultEnum.getMessage();
-        return result;
-    }
-
-    public static Result ofFail(BusinessErrorCode resultEnum) {
+    public static Result ofFail(IErrorCodeEnum resultEnum) {
         Result result = new Result();
         result.succ = false;
         result.code = resultEnum.getCode();
@@ -150,16 +92,5 @@ public class Result<T> implements Serializable {
         jsonObject.put("msg", this.msg);
         jsonObject.put("data", this.data);
         return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
-    }
-
-    @Override
-    public String toString() {
-        return "Result{" +
-                "succ=" + succ +
-                ", ts=" + ts +
-                ", data=" + data +
-                ", code='" + code + '\'' +
-                ", msg='" + msg + '\'' +
-                '}';
     }
 }

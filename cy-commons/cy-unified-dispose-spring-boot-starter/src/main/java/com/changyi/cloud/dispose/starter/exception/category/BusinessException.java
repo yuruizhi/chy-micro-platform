@@ -1,8 +1,9 @@
 package com.changyi.cloud.dispose.starter.exception.category;
 
 
-import com.changyi.cloud.dispose.starter.exception.error.CommonErrorCode;
 import com.changyi.cloud.dispose.starter.exception.error.details.BusinessErrorCode;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * {@link RuntimeException} 通用业务异常
@@ -10,18 +11,12 @@ import com.changyi.cloud.dispose.starter.exception.error.details.BusinessErrorCo
  * @author <a href="mailto:yaoonlyi@gmail.com">purgeyao</a>
  * @since 1.0.0
  */
+@Getter
+@AllArgsConstructor
 public class BusinessException extends RuntimeException {
 
     private String code;
     private boolean isShowMsg = true;
-
-    public String getCode() {
-        return code;
-    }
-
-    public boolean isShowMsg() {
-        return isShowMsg;
-    }
 
     /**
      * 使用枚举传参
@@ -32,26 +27,4 @@ public class BusinessException extends RuntimeException {
         super(errorCode.getMessage());
         this.code = errorCode.getCode();
     }
-
-    /**
-     * 使用CommonErrorCode枚举传参
-     *
-     * @param errorCode 异常枚举
-     */
-    public BusinessException(CommonErrorCode errorCode) {
-        super(errorCode.getMessage());
-        this.code = errorCode.getCode();
-    }
-
-    /**
-     * 使用自定义消息
-     *
-     * @param code 值
-     * @param msg  详情
-     */
-    public BusinessException(String code, String msg) {
-        super(msg);
-        this.code = code;
-    }
-
 }
