@@ -26,6 +26,7 @@
         <javaee-api.version>8.0</javaee-api.version>
         <cy-unified-dispose-spring-boot-starter.version>1.0.0</cy-unified-dispose-spring-boot-starter.version>
         <hutool.version>5.6.0</hutool.version>
+        <common-core.version>1.0.0</common-core.version>
     </properties>
 
     <dependencies>
@@ -80,11 +81,17 @@
                 <artifactId>spring-boot-starter-test</artifactId>
                 <scope>test</scope>
             </dependency>
+            <!--changyi -->
+            <dependency>
+                <groupId>com.changyi</groupId>
+                <artifactId>common-core</artifactId>
+                <version>${common-core.version}</version>
+            </dependency>
             <!--统一异常和结果返回starter-->
             <dependency>
-                 <groupId>com.changyi</groupId>
-                 <artifactId>cy-unified-dispose-spring-boot-starter</artifactId>
-                 <version>${cy-unified-dispose-spring-boot-starter.version}</version>
+                <groupId>com.changyi</groupId>
+                <artifactId>cy-unified-dispose-spring-boot-starter</artifactId>
+                <version>${cy-unified-dispose-spring-boot-starter.version}</version>
             </dependency>
             <!--日志starter-->
             <dependency>
