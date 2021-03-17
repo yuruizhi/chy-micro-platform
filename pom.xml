@@ -23,7 +23,6 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <fastjson.version>1.2.75</fastjson.version>
-        <javaee-api.version>8.0</javaee-api.version>
         <cy-unified-dispose-spring-boot-starter.version>1.0.0</cy-unified-dispose-spring-boot-starter.version>
         <hutool.version>5.6.0</hutool.version>
         <common-core.version>1.0.0</common-core.version>
