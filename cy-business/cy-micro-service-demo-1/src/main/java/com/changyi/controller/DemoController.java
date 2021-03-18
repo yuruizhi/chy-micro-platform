@@ -1,53 +1,41 @@
 package com.changyi.controller;
 
-import com.changyi.template.RedisRepository;
+import com.changyi.log.trace.TraceUtil;
+import com.changyi.service.TestService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
 
-
+@Slf4j
 @RestController
 @RequestMapping("/demo1")
 public class DemoController {
 
     @Autowired
-    private RedisRepository redisRepository;
+    private TestService testService;
 
-    @Cacheable(value = "test", key ="#roleCodes")
-    @GetMapping("/{roleCodes}")
-    public Map home(@PathVariable String roleCodes) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name","sajkdjf");
-        map.put("age", 1);
-        return map;
+    @RequestMapping("/t1")
+    public String home() {
+        return "demo1";
     }
 
 
-    @Cacheable(value = "test2", key ="#roleCodes")
-    @GetMapping("/2/{roleCodes}")
-    public String home2(@PathVariable String roleCodes) {
-        return "demo2";
-    }
+    @RequestMapping("/t2")
+    public String t2() {
 
-    @Cacheable(value = "begin", keyGenerator ="DefaultKeyGenerator" )
-    @GetMapping("/3/{roleCodes}/{key}")
-    public String home3(@PathVariable String roleCodes, @PathVariable String key) {
-        return "begin";
-    }
+        log.debug("demo11111111111111");
+        log.error("123312313123");
 
 
-    @GetMapping("/5/{roleCodes}/{key}")
-    public Map home4(@PathVariable String roleCodes, @PathVariable String key) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name","sajkdjf");
-        map.put("age", roleCodes);
-        redisRepository.setExpire(key, map, 123);
-        return map;
+        testService.test1();
+        System.out.println(TraceUtil.getTraceId()+"----");
+        log.error("123312313123");
+        return "demo1";
     }
+
+
+
+
 }

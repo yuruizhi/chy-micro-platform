@@ -12,10 +12,11 @@
     <artifactId>cy-commons</artifactId>
     <description>通用组件</description>
 
-
     <packaging>pom</packaging>
+
     <modules>
         <module>common-core</module>
+        <module>cy-unified-dispose-spring-boot-starter</module>
         <module>cy-log-spring-boot-starter</module>
         <module>cy-redis-spring-boot-start</module>
     </modules>

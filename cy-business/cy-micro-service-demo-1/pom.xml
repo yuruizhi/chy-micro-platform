@@ -19,6 +19,11 @@
 
         <dependency>
             <groupId>com.changyi</groupId>
+            <artifactId>common-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.changyi</groupId>
             <artifactId>cy-redis-spring-boot-start</artifactId>
             <version>1.0.0</version>
         </dependency>
