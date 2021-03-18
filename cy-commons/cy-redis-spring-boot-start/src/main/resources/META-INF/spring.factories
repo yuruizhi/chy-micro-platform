@@ -1,4 +1,5 @@
 ## autoconfig
 
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.wwh.redission.RedissonAutoConfiguration
+com.changyi.RedisCacheConfig,\
+com.changyi.template.RedisRepository

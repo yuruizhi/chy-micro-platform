@@ -1,6 +1,25 @@
 spring:
   application:
     name: demo1
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  cache:
+    redis:
+      time-to-live: 54s
+      key-prefix: 'defult:'
+      cache-null-values: true
 
+custom:
+  cache-manager:
+    customCaches:
+      test:
+        time-to-live: 120s
+        key-prefix: "GOOD:NAME:"
+      test2:
+        time-to-live: 240s
+        key-prefix: "GOOD1:NAME1:"
 server:
   port: 8081
+
+
