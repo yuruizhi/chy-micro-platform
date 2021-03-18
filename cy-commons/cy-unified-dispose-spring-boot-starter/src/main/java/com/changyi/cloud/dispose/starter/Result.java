@@ -1,8 +1,5 @@
 package com.changyi.cloud.dispose.starter;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.changyi.common.core.base.IErrorCodeEnum;
 import lombok.Data;
 
@@ -78,19 +75,5 @@ public class Result<T> implements Serializable {
         result.code = resultEnum.getCode();
         result.msg = resultEnum.getMessage();
         return result;
-    }
-
-    /**
-     * 获取 json
-     * @return json
-     */
-    public String buildResultJson() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("succ", this.succ);
-        jsonObject.put("code", this.code);
-        jsonObject.put("ts", this.ts);
-        jsonObject.put("msg", this.msg);
-        jsonObject.put("data", this.data);
-        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
     }
 }

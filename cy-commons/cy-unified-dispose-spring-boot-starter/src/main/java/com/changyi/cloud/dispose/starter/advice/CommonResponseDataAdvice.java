@@ -1,9 +1,9 @@
 package com.changyi.cloud.dispose.starter.advice;
 
-import com.alibaba.fastjson.JSON;
 import com.changyi.cloud.dispose.starter.GlobalDefaultProperties;
 import com.changyi.cloud.dispose.starter.Result;
 import com.changyi.cloud.dispose.starter.annotation.IgnoreResponseAdvice;
+import com.changyi.common.core.utils.JsonUtil;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -49,7 +49,7 @@ public class CommonResponseDataAdvice implements ResponseBodyAdvice<Object> {
         if (o == null) {
             // 当 o 返回类型为 string 并且为null会出现 java.lang.ClassCastException: Result cannot be cast to java.lang.String
             if (methodParameter.getParameterType().getName().equals("java.lang.String")) {
-                return JSON.toJSON(Result.ofSuccess()).toString();
+                return JsonUtil.toJSONStr((Result.ofSuccess()));
             }
             return Result.ofSuccess();
         }
@@ -60,7 +60,7 @@ public class CommonResponseDataAdvice implements ResponseBodyAdvice<Object> {
         // string 特殊处理 java.lang.ClassCastException: Result cannot be cast to java.lang.String
         if (o instanceof String) {
             serverHttpResponse.getHeaders().set("content-type", MediaType.APPLICATION_JSON_VALUE);
-            return JSON.toJSON(Result.ofSuccess(o)).toString();
+            return JsonUtil.toJSONStr(Result.ofSuccess(o));
         }
         return Result.ofSuccess(o);
     }
