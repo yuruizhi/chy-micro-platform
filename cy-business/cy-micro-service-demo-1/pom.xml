@@ -24,7 +24,7 @@
 
         <dependency>
             <groupId>com.changyi</groupId>
-            <artifactId>cy-redis-spring-boot-start</artifactId>
+            <artifactId>cy-redis-spring-boot-starter</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
