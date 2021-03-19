@@ -1,6 +1,12 @@
+server:
+  port: 8082
 spring:
   application:
     name: demo2
-
-server:
-  port: 8082
+cy:
+  swagger:
+    enabled: true
+    title: 用户中心
+    description: 用户中心接口文档
+    version: 1.0
+    base-package: com.changyi.demo2.controller

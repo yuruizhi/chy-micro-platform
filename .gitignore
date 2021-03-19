@@ -4,3 +4,8 @@ target/
 
 *.iml
 *.versionsBackup
+
+.mvn
+
+/cy-register/nacos/data/
+!/cy-register/nacos/target/

@@ -1,6 +1,12 @@
+server:
+  port: 8081
 spring:
   application:
     name: demo1
-
-server:
-  port: 8081
+cy:
+  swagger:
+    enabled: true
+    title: 搜索中心
+    description: 搜索中心接口文档
+    version: 1.0
+    base-package: com.changyi.demo1.controller

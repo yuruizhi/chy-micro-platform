@@ -12,12 +12,12 @@
     <artifactId>cy-commons</artifactId>
     <description>通用组件</description>
 
-
     <packaging>pom</packaging>
-    <modules>
-        <module>common-core</module>
-        <module>cy-log-spring-boot-starter</module>
-    </modules>
 
+    <modules>
+        <module>cy-common-spring-boot-starter</module>
+        <module>cy-log-spring-boot-starter</module>
+        <module>cy-swagger2-spring-boot-starter</module>
+    </modules>
 
 </project>
