@@ -13,7 +13,6 @@
     <artifactId>cy-common-spring-boot-starter</artifactId>
 
     <dependencies>
-
         <dependency>
             <groupId>com.changyi</groupId>
             <artifactId>cy-log-spring-boot-starter</artifactId>
@@ -22,6 +21,7 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
         </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -37,6 +37,11 @@
                     <artifactId>guava</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
     </dependencies>
 

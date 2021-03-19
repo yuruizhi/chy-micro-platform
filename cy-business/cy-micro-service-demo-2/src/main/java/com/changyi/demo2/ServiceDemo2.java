@@ -1,5 +1,6 @@
 package com.changyi.demo2;
 
+import com.changyi.cloud.dispose.starter.annotation.EnableGlobalDispose;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-@RestController
+@EnableGlobalDispose
 public class ServiceDemo2 {
 
     public static void main(String[] args) {

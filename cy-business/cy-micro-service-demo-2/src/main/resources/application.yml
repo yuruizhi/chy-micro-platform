@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: demo2
+  #可以抛出404异常
+  mvc:
+    throw-exception-if-no-handler-found: true
+    static-path-pattern: /statics/**
 cy:
   swagger:
     enabled: true
@@ -10,3 +14,5 @@ cy:
     description: 用户中心接口文档
     version: 1.0
     base-package: com.changyi.demo2.controller
+
+

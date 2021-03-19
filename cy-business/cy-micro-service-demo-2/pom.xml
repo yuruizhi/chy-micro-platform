@@ -50,6 +50,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
+        <dependency>
+             <groupId>com.changyi</groupId>
+             <artifactId>cy-unified-dispose-spring-boot-starter</artifactId>
+        </dependency>
     </dependencies>
 
 
