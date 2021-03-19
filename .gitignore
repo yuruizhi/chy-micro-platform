@@ -6,6 +6,7 @@ target/
 *.versionsBackup
 
 .mvn
+.DS_Store
 
 /cy-register/nacos/data/
 !/cy-register/nacos/target/
