@@ -1,4 +1,4 @@
-package com.changyi.controller;
+package com.changyi.demo1.controller;
 
 import com.changyi.template.RedisRepository;
 import org.springframework.beans.factory.annotation.Autowired;

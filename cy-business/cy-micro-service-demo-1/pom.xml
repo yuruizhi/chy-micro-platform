@@ -29,17 +29,15 @@
             <groupId>com.changyi</groupId>
             <artifactId>cy-swagger2-spring-boot-starter</artifactId>
         </dependency>
-
-
+        <!-- common -->
         <dependency>
             <groupId>com.changyi</groupId>
-            <artifactId>common-core</artifactId>
+            <artifactId>cy-common-spring-boot-starter</artifactId>
         </dependency>
-
+        <!-- redis -->
         <dependency>
             <groupId>com.changyi</groupId>
             <artifactId>cy-redis-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
         </dependency>
 
 
