@@ -1,3 +1,6 @@
+server:
+  port: 8082
+
 spring:
   application:
     name: demo1
@@ -24,7 +27,10 @@ custom:
       test2:
         time-to-live: 240s
         key-prefix: "GOOD1:NAME1:"
-server:
-  port: 8082
 
-
+swagger:
+  enabled: true
+  title: 搜索中心
+  description: 搜索中心接口文档
+  version: 1.0
+  base-package: com.changyi.demo1.controller

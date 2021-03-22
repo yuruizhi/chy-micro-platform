@@ -33,10 +33,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@EnableCaching
-@Configuration
 @ConditionalOnClass({CacheProperties.Redis.class, RedisCacheConfiguration.class})
 @EnableConfigurationProperties({CacheProperties.class, CustomCacheProperties.class})
+@Configuration
+@EnableCaching
 public class RedisCacheConfig {
 
     @Autowired

@@ -2,36 +2,60 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
     <groupId>com.changyi</groupId>
     <artifactId>cy-micro-platform</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
+
     <modules>
-        <module>cy-commons</module>
+        <!-- 业务 -->
         <module>cy-business</module>
+        <!-- 公共 -->
+        <module>cy-commons</module>
+        <!-- 配置 -->
+        <module>cy-config</module>
+        <!-- 网关 -->
         <module>cy-gateway</module>
+        <!-- 任务 -->
         <module>cy-job</module>
+
         <module>cy-authcenter</module>
     </modules>
 
     <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>8</java.version>
+
         <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!-- 自定义starter版本-->
+        <cy-log-spring-boot-starter.version>1.0.0</cy-log-spring-boot-starter.version>
+        <cy-swagger2-spring-boot-starter.version>1.0.0</cy-swagger2-spring-boot-starter.version>
         <cy-unified-dispose-spring-boot-starter.version>1.0.0</cy-unified-dispose-spring-boot-starter.version>
-        <hutool.version>5.6.0</hutool.version>
+        <cy-redis-spring-boot-starter.version>1.0.0</cy-redis-spring-boot-starter.version>
         <common-core.version>1.0.0</common-core.version>
+
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <commons-collections4.version>4.4</commons-collections4.version>
         <servlet-api.version>4.0.1</servlet-api.version>
         <io.jsonwebtoken.jjwt-api.version>0.10.5</io.jsonwebtoken.jjwt-api.version>
         <io.jsonwebtoken.jjwt-impl.version>0.10.5</io.jsonwebtoken.jjwt-impl.version>
         <io.jsonwebtoken.jjwt-jackson.version>0.10.5</io.jsonwebtoken.jjwt-jackson.version>
+        <lombok.version>1.18.8</lombok.version>
+        <hutool.version>5.6.0</hutool.version>
+        <redisson.version>3.14.1</redisson.version>
+
+        <knife4j.version>2.0.5</knife4j.version>
+        <swagger.version>2.9.2</swagger.version>
+        <swagger.ui.version>1.8.7</swagger.ui.version>
+        <swagger.mg.ui.version>1.0.6</swagger.mg.ui.version>
+        <swagger.butler.version>2.0.1</swagger.butler.version>
     </properties>
 
     <dependencies>
@@ -49,16 +73,11 @@
             <artifactId>commons-beanutils</artifactId>
             <version>${commons-beanutils.version}</version>
         </dependency>
-        <!--hutool工具包-->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
         </dependency>
-        <!--测试-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -66,9 +85,37 @@
         </dependency>
     </dependencies>
 
-
     <dependencyManagement>
         <dependencies>
+
+            <!-- 自定义starter -->
+            <dependency>
+                <groupId>com.changyi</groupId>
+                <artifactId>cy-log-spring-boot-starter</artifactId>
+                <version>${cy-log-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.changyi</groupId>
+                <artifactId>cy-swagger2-spring-boot-starter</artifactId>
+                <version>${cy-swagger2-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.changyi</groupId>
+                <artifactId>common-core</artifactId>
+                <version>${common-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.changyi</groupId>
+                <artifactId>cy-unified-dispose-spring-boot-starter</artifactId>
+                <version>${cy-unified-dispose-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.changyi</groupId>
+                <artifactId>cy-redis-spring-boot-starter</artifactId>
+                <version>${cy-redis-spring-boot-starter.version}</version>
+            </dependency>
+
+            <!-- spring boot -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -76,7 +123,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- spring cloud 依赖 -->
+            <!-- spring cloud -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -84,7 +131,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- spring cloud alibaba 依赖 -->
+            <!-- spring cloud alibaba -->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
@@ -92,32 +139,41 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--changyi -->
+
             <dependency>
-                <groupId>com.changyi</groupId>
-                <artifactId>common-core</artifactId>
-                <version>${common-core.version}</version>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
             </dependency>
-            <!--统一异常和结果返回starter-->
             <dependency>
-                <groupId>com.changyi</groupId>
-                <artifactId>cy-unified-dispose-spring-boot-starter</artifactId>
-                <version>${cy-unified-dispose-spring-boot-starter.version}</version>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${servlet-api.version}</version>
             </dependency>
-            <!--日志starter-->
-            <dependency>
-                <groupId>com.changyi</groupId>
-                <artifactId>cy-log-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <!--hutool工具包-->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
+            <!-- swagger -->
+            <dependency>
+                <groupId>com.github.zlt2000</groupId>
+                <artifactId>swagger-butler-core</artifactId>
+                <version>${swagger.butler.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-micro-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
 
     <build>
         <finalName>${project.name}</finalName>
@@ -150,4 +206,20 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>UC</name>
+            <email>bm_uc@vchangyi.com</email>
+            <organizationUrl>https://www.vchangyi.com</organizationUrl>
+            <url>https://www.vchangyi.com</url>
+        </developer>
+    </developers>
 </project>
