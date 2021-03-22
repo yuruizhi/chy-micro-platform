@@ -9,7 +9,12 @@ spring:
       time-to-live: 54s
       key-prefix: 'defult:'
       cache-null-values: true
-
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.56.1:8848
+      config:
+        server-addr: 192.168.56.1:8848
 custom:
   cache-manager:
     customCaches:
@@ -20,6 +25,6 @@ custom:
         time-to-live: 240s
         key-prefix: "GOOD1:NAME1:"
 server:
-  port: 8081
+  port: 8082
 
 

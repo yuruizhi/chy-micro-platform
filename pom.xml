@@ -13,11 +13,12 @@
         <module>cy-business</module>
         <module>cy-gateway</module>
         <module>cy-job</module>
+        <module>cy-authcenter</module>
     </modules>
 
     <properties>
-        <spring-boot.version>2.4.3</spring-boot.version>
-        <spring-cloud.version>2020.0.1</spring-cloud.version>
+        <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
+        <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -28,6 +29,9 @@
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <commons-collections4.version>4.4</commons-collections4.version>
         <servlet-api.version>4.0.1</servlet-api.version>
+        <io.jsonwebtoken.jjwt-api.version>0.10.5</io.jsonwebtoken.jjwt-api.version>
+        <io.jsonwebtoken.jjwt-impl.version>0.10.5</io.jsonwebtoken.jjwt-impl.version>
+        <io.jsonwebtoken.jjwt-jackson.version>0.10.5</io.jsonwebtoken.jjwt-jackson.version>
     </properties>
 
     <dependencies>

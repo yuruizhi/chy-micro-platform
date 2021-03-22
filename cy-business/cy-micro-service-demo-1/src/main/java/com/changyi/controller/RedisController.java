@@ -3,6 +3,7 @@ package com.changyi.controller;
 import com.changyi.template.RedisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,15 +18,15 @@ import java.util.Map;
 public class RedisController {
 
     @Autowired
+    Environment environment;
+
+    @Autowired
     private RedisRepository redisRepository;
 
-    @Cacheable(value = "test", key ="#roleCodes")
+
     @GetMapping("/{roleCodes}")
-    public Map home(@PathVariable String roleCodes) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name","sajkdjf");
-        map.put("age", 1);
-        return map;
+    public String home(@PathVariable String roleCodes) {
+        return environment.getProperty("local.server.port");
     }
 
 

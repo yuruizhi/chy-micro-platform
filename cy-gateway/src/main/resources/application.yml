@@ -1,0 +1,43 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: cy-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
+      routes:
+        - id: demo1
+          uri: lb://demo1
+          predicates:
+            - Path=/redis/**
+        - id: tulingmall-member
+          uri: lb://tulingmall-member
+          predicates:
+            - Path=/sso/**,/member/**
+    nacos:
+      discovery:
+        server-addr: 192.168.56.1:8848
+      config:
+        server-addr: 192.168.56.1:8848
+#management: #开启SpringBoot Admin的监控
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: always
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+
+cy:
+  gateway:
+    shouldSkipUrls:
+      - /oauth/**
+      - /sso/**
+      - /redis/**
