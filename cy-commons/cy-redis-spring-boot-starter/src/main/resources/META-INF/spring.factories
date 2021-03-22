@@ -1,5 +1,3 @@
-## autoconfig
-
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.changyi.RedisCacheConfig,\
 com.changyi.template.RedisRepository

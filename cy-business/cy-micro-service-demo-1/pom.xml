@@ -19,6 +19,21 @@
             <artifactId>cy-config</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <!-- common-core -->
+        <dependency>
+            <groupId>com.changyi</groupId>
+            <artifactId>common-core</artifactId>
+        </dependency>
+        <!-- redis -->
+        <dependency>
+            <groupId>com.changyi</groupId>
+            <artifactId>cy-redis-spring-boot-starter</artifactId>
+        </dependency>
+        <!-- unified-dispose -->
+        <dependency>
+            <groupId>com.changyi</groupId>
+            <artifactId>cy-unified-dispose-spring-boot-starter</artifactId>
+        </dependency>
         <!-- log -->
         <dependency>
             <groupId>com.changyi</groupId>
@@ -29,17 +44,6 @@
             <groupId>com.changyi</groupId>
             <artifactId>cy-swagger2-spring-boot-starter</artifactId>
         </dependency>
-        <!-- common -->
-        <dependency>
-            <groupId>com.changyi</groupId>
-            <artifactId>cy-common-spring-boot-starter</artifactId>
-        </dependency>
-        <!-- redis -->
-        <dependency>
-            <groupId>com.changyi</groupId>
-            <artifactId>cy-redis-spring-boot-starter</artifactId>
-        </dependency>
-
 
         <!-- spring-boot-web -->
         <dependency>
