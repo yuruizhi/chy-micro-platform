@@ -12,12 +12,12 @@ import javax.validation.constraints.NotBlank;
 
 @Api(tags = "Demo2模块")
 @RestController
-@RequestMapping("/demo2")
+@RequestMapping("/test2")
 @Slf4j
 public class DemoController {
 
     @ApiOperation(value = "Demo2 api")
-    @RequestMapping("/t2")
+    @RequestMapping("t2")
     public String home() {
         return "demo2,t1";
     }

@@ -11,26 +11,24 @@ spring:
           enabled: true
       routes:
         - id: demo1
-          uri: lb://demo1
+          uri: lb://demo1-center
           predicates:
-            - Path=/redis/**
-        - id: tulingmall-member
-          uri: lb://tulingmall-member
+            - Path=/demo1/**
+          filters:
+            - StripPrefix=1
+        - id: demo2
+          uri: lb://demo2-center
           predicates:
-            - Path=/sso/**,/member/**
+            - Path=/demo2/**
+          filters:
+            - StripPrefix=1
     nacos:
       discovery:
-        server-addr: 192.168.56.1:8848
+        server-addr: 127.0.0.1:8848
       config:
-        server-addr: 192.168.56.1:8848
-#management: #开启SpringBoot Admin的监控
-#  endpoints:
-#    web:
-#      exposure:
-#        include: '*'
-#  endpoint:
-#    health:
-#      show-details: always
+        server-addr: 127.0.0.1:8848
+
+
 logging:
   level:
     org.springframework.cloud.gateway: debug
@@ -41,3 +39,7 @@ cy:
       - /oauth/**
       - /sso/**
       - /redis/**
+      - /demo1/**
+      - /demo2/**
+  swagger-agg:
+    generate-routes: demo1,demo2
