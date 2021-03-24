@@ -19,10 +19,10 @@
             <artifactId>cy-config</artifactId>
             <version>1.0.0</version>
         </dependency>-->
-        <!-- common-core -->
+        <!-- cy-common-core -->
         <dependency>
             <groupId>com.changyi</groupId>
-            <artifactId>common-core</artifactId>
+            <artifactId>cy-common-core</artifactId>
         </dependency>
         <!-- redis -->
         <dependency>
