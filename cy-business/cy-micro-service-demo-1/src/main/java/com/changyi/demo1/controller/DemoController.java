@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@Api(tags = "Demo1模块")
 @Slf4j
+@Api(tags = "Demo1模块")
 @RestController
-@RequestMapping("/demo1")
+@RequestMapping("/test1")
 public class DemoController {
 
     @Autowired
@@ -33,7 +33,6 @@ public class DemoController {
 
         log.debug("demo11111111111111");
         log.error("123312313123");
-
 
         testService.test1();
         System.out.println(TraceUtil.getTraceId()+"----");

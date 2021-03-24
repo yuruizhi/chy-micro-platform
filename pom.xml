@@ -50,12 +50,7 @@
         <lombok.version>1.18.8</lombok.version>
         <hutool.version>5.6.0</hutool.version>
         <redisson.version>3.14.1</redisson.version>
-
         <knife4j.version>2.0.5</knife4j.version>
-        <swagger.version>2.9.2</swagger.version>
-        <swagger.ui.version>1.8.7</swagger.ui.version>
-        <swagger.mg.ui.version>1.0.6</swagger.mg.ui.version>
-        <swagger.butler.version>2.0.1</swagger.butler.version>
     </properties>
 
     <dependencies>
@@ -154,12 +149,6 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
-            </dependency>
-            <!-- swagger -->
-            <dependency>
-                <groupId>com.github.zlt2000</groupId>
-                <artifactId>swagger-butler-core</artifactId>
-                <version>${swagger.butler.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>

@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: demo1
+    name: demo1-center
   redis:
     host: 127.0.0.1
     port: 6379
