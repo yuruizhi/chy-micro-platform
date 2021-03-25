@@ -1,0 +1,45 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: cy-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
+      routes:
+        - id: demo1
+          uri: lb://demo1-center
+          predicates:
+            - Path=/demo1/**
+          filters:
+            - StripPrefix=1
+        - id: demo2
+          uri: lb://demo2-center
+          predicates:
+            - Path=/demo2/**
+          filters:
+            - StripPrefix=1
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+
+
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+
+cy:
+  gateway:
+    shouldSkipUrls:
+      - /oauth/**
+      - /sso/**
+      - /redis/**
+      - /demo1/**
+      - /demo2/**
+  swagger-agg:
+    generate-routes: demo1,demo2

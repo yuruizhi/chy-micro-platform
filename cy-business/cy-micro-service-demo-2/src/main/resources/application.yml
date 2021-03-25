@@ -1,0 +1,19 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: demo2
+  #可以抛出404异常
+  mvc:
+    throw-exception-if-no-handler-found: true
+    static-path-pattern: /statics/**
+
+swagger:
+  enabled: true
+  title: 用户中心
+  description: 用户中心接口文档
+  version: 1.0
+  base-package: com.changyi.demo2.controller
+
+
