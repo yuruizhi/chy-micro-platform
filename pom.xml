@@ -33,12 +33,14 @@
         <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
+        <spring-social-security.version>1.1.6.RELEASE</spring-social-security.version>
 
         <!-- 自定义starter版本-->
+        <cy-db-spring-boot-starter.version>1.0.0</cy-db-spring-boot-starter.version>
+        <cy-redis-spring-boot-starter.version>1.0.0</cy-redis-spring-boot-starter.version>
         <cy-log-spring-boot-starter.version>1.0.0</cy-log-spring-boot-starter.version>
         <cy-swagger2-spring-boot-starter.version>1.0.0</cy-swagger2-spring-boot-starter.version>
         <cy-unified-dispose-spring-boot-starter.version>1.0.0</cy-unified-dispose-spring-boot-starter.version>
-        <cy-redis-spring-boot-starter.version>1.0.0</cy-redis-spring-boot-starter.version>
         <cy-common-core.version>1.0.0</cy-common-core.version>
 
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
@@ -47,10 +49,13 @@
         <io.jsonwebtoken.jjwt-api.version>0.10.5</io.jsonwebtoken.jjwt-api.version>
         <io.jsonwebtoken.jjwt-impl.version>0.10.5</io.jsonwebtoken.jjwt-impl.version>
         <io.jsonwebtoken.jjwt-jackson.version>0.10.5</io.jsonwebtoken.jjwt-jackson.version>
-        <lombok.version>1.18.8</lombok.version>
+        <druid-starter>1.1.22</druid-starter>
+        <mybatis-plus-boot-starter.version>3.4.0</mybatis-plus-boot-starter.version>
+        <lombok.version>1.18.18</lombok.version>
         <hutool.version>5.6.0</hutool.version>
         <redisson.version>3.14.1</redisson.version>
         <knife4j.version>2.0.5</knife4j.version>
+        <banner.version>1.0.2</banner.version>
     </properties>
 
     <dependencies>
@@ -109,6 +114,11 @@
                 <artifactId>cy-redis-spring-boot-starter</artifactId>
                 <version>${cy-redis-spring-boot-starter.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.changyi</groupId>
+                <artifactId>cy-db-spring-boot-starter</artifactId>
+                <version>${cy-db-spring-boot-starter.version}</version>
+            </dependency>
 
             <!-- spring boot -->
             <dependency>
@@ -134,6 +144,11 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.social</groupId>
+                <artifactId>spring-social-security</artifactId>
+                <version>${spring-social-security.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.redisson</groupId>
@@ -150,6 +165,28 @@
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
+            <!-- druid 官方 starter -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid-starter}</version>
+            </dependency>
+            <!-- mybatis-plus start -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-extension</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-spring-boot-starter</artifactId>
@@ -159,6 +196,28 @@
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-micro-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>
+            </dependency>
+            <!--添加jwt相关的包-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${io.jsonwebtoken.jjwt-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${io.jsonwebtoken.jjwt-impl.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${io.jsonwebtoken.jjwt-jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.nepxion</groupId>
+                <artifactId>banner</artifactId>
+                <version>${banner.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
