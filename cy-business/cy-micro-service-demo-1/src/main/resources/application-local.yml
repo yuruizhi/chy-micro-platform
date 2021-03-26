@@ -1,0 +1,39 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: demo1-center
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  cache:
+    redis:
+      time-to-live: 54s
+      key-prefix: 'defult:'
+      cache-null-values: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+
+
+custom:
+  cache-manager:
+    customCaches:
+      test:
+        time-to-live: 120s
+        key-prefix: "GOOD:NAME:"
+      test2:
+        time-to-live: 240s
+        key-prefix: "GOOD1:NAME1:"
+
+swagger:
+  enabled: true
+  title: 搜索中心
+  description: 搜索中心接口文档
+  version: 1.0
+  base-package: com.changyi.demo1.controller
+
