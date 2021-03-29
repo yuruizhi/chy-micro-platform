@@ -20,7 +20,9 @@
         <module>cy-gateway</module>
         <!-- 任务 -->
         <module>cy-job</module>
-
+        <!--代码生成器 -->
+        <module>cy-code-generate</module>
+        <!-- 统一授权中心 -->
         <module>cy-authcenter</module>
     </modules>
 
@@ -50,12 +52,16 @@
         <io.jsonwebtoken.jjwt-impl.version>0.10.5</io.jsonwebtoken.jjwt-impl.version>
         <io.jsonwebtoken.jjwt-jackson.version>0.10.5</io.jsonwebtoken.jjwt-jackson.version>
         <druid-starter>1.1.22</druid-starter>
-        <mybatis-plus-boot-starter.version>3.4.0</mybatis-plus-boot-starter.version>
+        <mybatis-plus.version>3.4.0</mybatis-plus.version>
+        <mybatis-plus-generator.version>3.3.0</mybatis-plus-generator.version>
+        <mysql.version>8.0.18</mysql.version>
         <lombok.version>1.18.18</lombok.version>
         <hutool.version>5.6.0</hutool.version>
         <redisson.version>3.14.1</redisson.version>
         <knife4j.version>2.0.5</knife4j.version>
         <banner.version>1.0.2</banner.version>
+        <freemarker.version>2.3.31</freemarker.version>
+        <velocity.version>2.3</velocity.version>
     </properties>
 
     <dependencies>
@@ -175,17 +181,12 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus-boot-starter.version}</version>
+                <version>${mybatis-plus.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-extension</artifactId>
-                <version>${mybatis-plus-boot-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus</artifactId>
-                <version>${mybatis-plus-boot-starter.version}</version>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
@@ -219,6 +220,21 @@
                 <artifactId>banner</artifactId>
                 <version>${banner.version}</version>
             </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+           <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -236,13 +252,6 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${spring-boot.version}</version>
-                    <configuration>
-                        <finalName>${project.build.finalName}</finalName>
-                        <layers>
-                            <enabled>true</enabled>
-                        </layers>
-                    </configuration>
                     <executions>
                         <execution>
                             <goals>

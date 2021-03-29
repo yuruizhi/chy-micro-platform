@@ -1,0 +1,61 @@
+package ${package.Mapper};
+
+import ${package.Entity}.${entity};
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
+
+/**
+ * <p>
+ * $!{table.comment} Mapper 接口
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${kotlin})
+interface ${table.mapperName} : ${superMapperClass}<${entity}>
+#else
+@Mapper
+public interface ${table.mapperName}  extends IBaseMapper<${entity}>{
+
+##    /**
+##     * 根据参数查询
+##     */
+##    @Transactional(readOnly = true)
+##    ${entity} selectByParams(@Param(value = "params") ${entity} params);
+##
+##    /**
+##     * 插入数据
+##     */
+##    int insert(@Param(value = "obj")${entity} obj);
+##
+##    int  updateByPrimaryKey(@Param(value = "obj")${entity} obj);
+##
+##    int  deleteByPrimaryKey(@Param(value = "id")String id);
+##
+##    int  selectCountByParams(@Param(value = "obj")${entity} obj);
+##
+##    int  insertBatch(@Param(value = "list")List<${entity}> list);
+##
+##    ${entity}  selectByPrimaryKey(@Param(value = "id")String id);
+##
+##    int  updateByPrimaryKeySelective(@Param(value = "obj")${entity} obj);
+##
+##
+##    /**
+##    * 分页查询 记录，分页条件为null，返回所有
+##    *
+##    * @param params     查询条件
+##    * @param pageOffset 开始游标
+##    * @param pageSize   每页显示的数量z
+##    * @param orderParam 排序参数
+##    * @return
+##    * @author three
+##    */
+##    List<${entity} > selectListByParams(@Param(value = "params") ${entity} params, @Param(value = "pageOffset") Integer pageOffset, @Param(value = "pageSize") Integer pageSize, @Param(value = "orderParam") String orderParam);
+
+
+}
+#end
