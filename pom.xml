@@ -20,7 +20,9 @@
         <module>cy-gateway</module>
         <!-- 任务 -->
         <module>cy-job</module>
-
+        <!--代码生成器 -->
+        <module>cy-code-generate</module>
+        <!-- 统一授权中心 -->
         <module>cy-authcenter</module>
     </modules>
 
@@ -33,13 +35,15 @@
         <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
+        <spring-social-security.version>1.1.6.RELEASE</spring-social-security.version>
 
         <!-- 自定义starter版本-->
+        <cy-db-spring-boot-starter.version>1.0.0</cy-db-spring-boot-starter.version>
+        <cy-redis-spring-boot-starter.version>1.0.0</cy-redis-spring-boot-starter.version>
         <cy-log-spring-boot-starter.version>1.0.0</cy-log-spring-boot-starter.version>
         <cy-swagger2-spring-boot-starter.version>1.0.0</cy-swagger2-spring-boot-starter.version>
         <cy-unified-dispose-spring-boot-starter.version>1.0.0</cy-unified-dispose-spring-boot-starter.version>
-        <cy-redis-spring-boot-starter.version>1.0.0</cy-redis-spring-boot-starter.version>
-        <common-core.version>1.0.0</common-core.version>
+        <cy-common-core.version>1.0.0</cy-common-core.version>
 
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <commons-collections4.version>4.4</commons-collections4.version>
@@ -47,15 +51,17 @@
         <io.jsonwebtoken.jjwt-api.version>0.10.5</io.jsonwebtoken.jjwt-api.version>
         <io.jsonwebtoken.jjwt-impl.version>0.10.5</io.jsonwebtoken.jjwt-impl.version>
         <io.jsonwebtoken.jjwt-jackson.version>0.10.5</io.jsonwebtoken.jjwt-jackson.version>
-        <lombok.version>1.18.8</lombok.version>
+        <druid-starter>1.1.22</druid-starter>
+        <mybatis-plus.version>3.4.0</mybatis-plus.version>
+        <mybatis-plus-generator.version>3.3.0</mybatis-plus-generator.version>
+        <mysql.version>8.0.18</mysql.version>
+        <lombok.version>1.18.18</lombok.version>
         <hutool.version>5.6.0</hutool.version>
         <redisson.version>3.14.1</redisson.version>
         <knife4j.version>2.0.5</knife4j.version>
-        <mybatis-starter.version>2.1.4</mybatis-starter.version>
-        <mysql.version>8.0.18</mysql.version>
-        <mybatis-plus.version>3.3.0</mybatis-plus.version>
-        <freemarker.version>2.3.29</freemarker.version>
-        <velocity.version>2.1</velocity.version>
+        <banner.version>1.0.2</banner.version>
+        <freemarker.version>2.3.31</freemarker.version>
+        <velocity.version>2.3</velocity.version>
     </properties>
 
     <dependencies>
@@ -101,8 +107,8 @@
             </dependency>
             <dependency>
                 <groupId>com.changyi</groupId>
-                <artifactId>common-core</artifactId>
-                <version>${common-core.version}</version>
+                <artifactId>cy-common-core</artifactId>
+                <version>${cy-common-core.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.changyi</groupId>
@@ -113,6 +119,11 @@
                 <groupId>com.changyi</groupId>
                 <artifactId>cy-redis-spring-boot-starter</artifactId>
                 <version>${cy-redis-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.changyi</groupId>
+                <artifactId>cy-db-spring-boot-starter</artifactId>
+                <version>${cy-db-spring-boot-starter.version}</version>
             </dependency>
 
             <!-- spring boot -->
@@ -139,6 +150,11 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.social</groupId>
+                <artifactId>spring-social-security</artifactId>
+                <version>${spring-social-security.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.redisson</groupId>
@@ -155,6 +171,23 @@
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
+            <!-- druid 官方 starter -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid-starter}</version>
+            </dependency>
+            <!-- mybatis-plus start -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-spring-boot-starter</artifactId>
@@ -165,17 +198,34 @@
                 <artifactId>knife4j-micro-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>
             </dependency>
+            <!--添加jwt相关的包-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${io.jsonwebtoken.jjwt-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${io.jsonwebtoken.jjwt-impl.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${io.jsonwebtoken.jjwt-jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.nepxion</groupId>
+                <artifactId>banner</artifactId>
+                <version>${banner.version}</version>
+            </dependency>
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-generator</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-            <dependency>
+           <dependency>
                 <groupId>org.freemarker</groupId>
                 <artifactId>freemarker</artifactId>
                 <version>${freemarker.version}</version>
@@ -184,11 +234,6 @@
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity-engine-core</artifactId>
                 <version>${velocity.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${mybatis-starter.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -207,13 +252,6 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${spring-boot.version}</version>
-                    <configuration>
-                        <finalName>${project.build.finalName}</finalName>
-                        <layers>
-                            <enabled>true</enabled>
-                        </layers>
-                    </configuration>
                     <executions>
                         <execution>
                             <goals>

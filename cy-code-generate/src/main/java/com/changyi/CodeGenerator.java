@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +18,7 @@ import java.util.Scanner;
 public class CodeGenerator {
 
     /**
-     * <p>
      * 读取控制台内容
-     * </p>
      */
     public static String scanner(String tip) {
         Scanner scanner = new Scanner(System.in);
@@ -27,18 +27,22 @@ public class CodeGenerator {
         System.out.println(help.toString());
         if (scanner.hasNext()) {
             String ipt = scanner.next();
-            if (StringUtils.isNotEmpty(ipt)) {
+            if (StringUtils.isNotBlank(ipt)) {
                 return ipt;
             }
         }
         throw new MybatisPlusException("请输入正确的" + tip + "！");
     }
-    //避免手动收入因为都是一个模块里面，不包含多个模块
-    //需要生产的表名
+
+    // 避免手动收入因为都是一个模块里面，不包含多个模块
+    // 需要生产的表名
     public static final String[] TABLE_LIST = {"tb_item"};
-    //模块名
+
+    // 模块名
     public static final String MODULE_NAME = "test";
+
     public static void main(String[] args) {
+
         // cy-gateway器
         AutoGenerator mpg = new AutoGenerator();
 
@@ -61,16 +65,16 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/clouddemo?useUnicode=true&characterEncoding=utf8&useOldAliasMetadataBehavior=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=UTC");
+        dsc.setUrl("jdbc:mysql://sh-cdb-5wr4bn64.sql.tencentcdb.com:63285/mallcloud?useUnicode=true&characterEncoding=utf8&useOldAliasMetadataBehavior=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=UTC");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("123456");
+        dsc.setPassword("ZeueGhtMder83tBO");
         mpg.setDataSource(dsc);
 
         // 包配置
         final PackageConfig pc = new PackageConfig();
-//        pc.setModuleName(scanner("模块名"));
+        pc.setModuleName(scanner("模块名"));
         //取消手动收入，直接写死
         pc.setModuleName(MODULE_NAME);
         pc.setParent("com.changyi.chy");
@@ -105,8 +109,8 @@ public class CodeGenerator {
         focList.add(new FileOutConfig(reqAddtemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return projectPath + "/cy-gateway/src/main/java/"+ pc.getParent().replace(".","/") +"/"+ "request/"
-                        + "Req" + tableInfo.getEntityName()+"Add" + StringPool.DOT_JAVA;
+                return projectPath + "/cy-gateway/src/main/java/" + pc.getParent().replace(".", "/") + "/" + "request/"
+                        + "Req" + tableInfo.getEntityName() + "Add" + StringPool.DOT_JAVA;
             }
         });
 
@@ -115,8 +119,8 @@ public class CodeGenerator {
         focList.add(new FileOutConfig(reqUpdatetemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return projectPath + "/cy-gateway/src/main/java/"+ pc.getParent().replace(".","/") +"/"+ "request/"
-                        + "Req" + tableInfo.getEntityName()+"Update" + StringPool.DOT_JAVA;
+                return projectPath + "/cy-gateway/src/main/java/" + pc.getParent().replace(".", "/") + "/" + "request/"
+                        + "Req" + tableInfo.getEntityName() + "Update" + StringPool.DOT_JAVA;
             }
         });
         // 自定义请求查询实体类
@@ -124,8 +128,8 @@ public class CodeGenerator {
         focList.add(new FileOutConfig(reqQuerytemplatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return projectPath + "/cy-gateway/src/main/java/"+ pc.getParent().replace(".","/") +"/"+ "request/"
-                        + "Req" + tableInfo.getEntityName()+"Query" + StringPool.DOT_JAVA;
+                return projectPath + "/cy-gateway/src/main/java/" + pc.getParent().replace(".", "/") + "/" + "request/"
+                        + "Req" + tableInfo.getEntityName() + "Query" + StringPool.DOT_JAVA;
             }
         });
 
@@ -135,12 +139,10 @@ public class CodeGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                return projectPath + "/cy-gateway/src/main/java/"+pc.getParent().replace(".","/") +"/"+"/"+"response/"
+                return projectPath + "/cy-gateway/src/main/java/" + pc.getParent().replace(".", "/") + "/" + "/" + "response/"
                         + "Response" + tableInfo.getEntityName() + StringPool.DOT_JAVA;
             }
         });
-
-
 
 
         cfg.setFileOutConfigList(focList);
@@ -171,7 +173,7 @@ public class CodeGenerator {
 //        strategy.setSuperControllerClass("你自己的父类控制器,没有就不用设置!");
         // 写于父类中的公共字段
         //strategy.setSuperEntityColumns("id");
-//        strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
+        strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         strategy.setInclude(TABLE_LIST);
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");

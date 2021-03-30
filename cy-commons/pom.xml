@@ -15,7 +15,7 @@
     <description>通用组件</description>
 
     <modules>
-        <module>common-core</module>
+        <module>cy-common-core</module>
         <module>cy-unified-dispose-spring-boot-starter</module>
         <module>cy-log-spring-boot-starter</module>
         <module>cy-swagger2-spring-boot-starter</module>

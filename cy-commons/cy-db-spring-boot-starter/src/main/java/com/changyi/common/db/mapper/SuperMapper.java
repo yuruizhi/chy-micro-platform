@@ -1,5 +1,7 @@
-package com.changyi.chy.commons.platform.auth.mapper;
+package com.changyi.common.db.mapper;
 
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -7,13 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 基础类 MAPPER
- *
- * @author three
+ * mapper 父类，注意这个类不要让 mp 扫描到！！
+ * @author zlt
  */
+public interface SuperMapper<M> extends BaseMapper<M> {
 
+    // 这里可以放一些公共的方法
 
-public interface IBaseMapper<M> {
     /**
      * 获取 序列号
      *
@@ -29,6 +31,7 @@ public interface IBaseMapper<M> {
      * @return
      * @author three
      */
+    @Override
     int insert(@Param(value = "obj")M obj);
 
     /**
@@ -36,7 +39,7 @@ public interface IBaseMapper<M> {
      * @param list
      * @return
      */
-    int insertBatch(@Param(value = "list")List<M> list);
+    int insertBatch(@Param(value = "list") List<M> list);
 
     /**
      * 插入记录(有效字段,即非空字段)

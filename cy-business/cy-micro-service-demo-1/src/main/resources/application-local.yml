@@ -1,9 +1,10 @@
-server:
-  port: 8081
-
 spring:
-  application:
-    name: demo1-center
+  datasource:
+    #账号配置
+    url: jdbc:mysql://sh-cdb-5wr4bn64.sql.tencentcdb.com:63285/mallcloud?characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useUnicode=true&useServerPrepStmts=false&rewriteBatchedStatements=true
+    username: root
+    password: ZeueGhtMder83tBO
+    driver-class-name: com.mysql.cj.jdbc.Driver
   redis:
     host: 127.0.0.1
     port: 6379
@@ -29,6 +30,14 @@ custom:
       test2:
         time-to-live: 240s
         key-prefix: "GOOD1:NAME1:"
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.central.common.model
+  global-config:
+    db-config:
+      id-type: auto
 
 swagger:
   enabled: true

@@ -17,12 +17,12 @@ public class Result<T> implements Serializable {
     /**
      * 是否成功
      */
-    private Boolean succ;
+    private Boolean success;
 
     /**
      * 服务器当前时间戳
      */
-    private Long ts = System.currentTimeMillis();
+    private Long timestamp = System.currentTimeMillis();
 
     /**
      * 成功数据
@@ -41,20 +41,20 @@ public class Result<T> implements Serializable {
 
     public static Result ofSuccess() {
         Result result = new Result();
-        result.succ = true;
+        result.success = true;
         return result;
     }
 
     public static Result ofSuccess(Object data) {
         Result result = new Result();
-        result.succ = true;
+        result.success = true;
         result.setData(data);
         return result;
     }
 
     public static Result ofFail(String code, String msg) {
         Result result = new Result();
-        result.succ = false;
+        result.success = false;
         result.code = code;
         result.msg = msg;
         return result;
@@ -62,7 +62,7 @@ public class Result<T> implements Serializable {
 
     public static Result ofFail(IErrorCodeEnum resultEnum, Object data) {
         Result result = new Result();
-        result.succ = false;
+        result.success = false;
         result.code = resultEnum.getCode();
         result.msg = resultEnum.getMessage();
         result.setData(data);
@@ -71,7 +71,7 @@ public class Result<T> implements Serializable {
 
     public static Result ofFail(IErrorCodeEnum resultEnum) {
         Result result = new Result();
-        result.succ = false;
+        result.success = false;
         result.code = resultEnum.getCode();
         result.msg = resultEnum.getMessage();
         return result;

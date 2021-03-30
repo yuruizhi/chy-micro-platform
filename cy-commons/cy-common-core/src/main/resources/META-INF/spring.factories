@@ -1,0 +1,5 @@
+org.springframework.context.ApplicationContextInitializer=\
+com.changyi.common.core.config.BannerInitializer
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.changyi.common.core.lock.LockAspect
