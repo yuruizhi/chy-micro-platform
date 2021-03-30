@@ -20,13 +20,10 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
- * service实现父类
+ * service实现父类.
  *
- * @author zlt
- * @date 2019/1/10
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
+ * @author Henry.yu
+ * @date 2021.3.25
  */
 public class SuperServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> implements ISuperService<T> {
 
