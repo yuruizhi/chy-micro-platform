@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author 作者 owen E-mail: 624191343@qq.com
- * 用户
+ * 用户模块API.
+ *
+ * @author Henry.yu
+ * @date 2021.3.30
  */
 @Slf4j
 @RestController
 @Api(tags = "用户模块api")
 public class SysUserController {
-
-    private static final String ADMIN_CHANGE_MSG = "超级管理员不给予修改";
 
 
     @Autowired
@@ -27,11 +27,11 @@ public class SysUserController {
 
 
     /**
-     * 通过手机号查询用户、角色信息
+     * 通过手机号查询用户信息
      *
      * @param mobile 手机号
      */
-    @GetMapping(value = "/users-anon/mobile", params = "mobile")
+    @GetMapping(value = "/users/mobile", params = "mobile")
     @ApiOperation(value = "根据手机号查询用户")
     public SysUser findByMobile(String mobile) {
         return appUserService.findByMobile(mobile);

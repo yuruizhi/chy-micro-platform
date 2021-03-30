@@ -18,6 +18,10 @@
             <artifactId>cy-common-core</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.changyi</groupId>
+            <artifactId>cy-log-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>

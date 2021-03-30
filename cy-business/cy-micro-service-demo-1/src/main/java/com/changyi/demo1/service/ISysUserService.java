@@ -8,10 +8,8 @@ import com.changyi.demo1.model.SysUser;
 import java.util.Map;
 
 /**
- * @author zlt
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
+ * @author Henry.yu
+ * @date 2021.3.30
  */
 public interface ISysUserService extends ISuperService<SysUser> {
 

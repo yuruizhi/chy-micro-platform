@@ -20,9 +20,10 @@ public class BannerInitializer implements ApplicationContextInitializer<Configur
     @Override
     public void initialize(ConfigurableApplicationContext applicationContext) {
         if (!(applicationContext instanceof AnnotationConfigApplicationContext)) {
-            LogoBanner logoBanner = new LogoBanner(BannerInitializer.class, "/uc/logo.txt", "Welcome to UC", 5, 6, new Color[5], true);
+            LogoBanner logoBanner = new LogoBanner(BannerInitializer.class, "/uc/logo.txt", "Welcome to UC", 1, 22, new Color[1], true);
             CustomBanner.show(logoBanner, new Description(BannerConstant.VERSION + ":", CommonConstant.PROJECT_VERSION, 0, 1)
                     , new Description("gitlab:", "https://gitlab-ce.k8s.tools.vchangyi.com/uc/cy-micro-platform", 0, 1)
+                    , new Description("Blog:", "https://www.vchangyi.com", 0, 1)
             );
         }
     }
