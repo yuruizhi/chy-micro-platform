@@ -1,24 +1,23 @@
-package com.changyi.demo1;
+package com.changyi.fegin;
 
-import com.changyi.cloud.dispose.starter.annotation.EnableGlobalDispose;
+import com.netflix.loadbalancer.IRule;
+import com.netflix.loadbalancer.RandomRule;
+import com.netflix.loadbalancer.ZoneAvoidanceRule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-
-import javax.sql.DataSource;
+import org.springframework.context.annotation.Bean;
 
 @Slf4j
-@EnableDiscoveryClient
+@EnableFeignClients
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-@EnableGlobalDispose
-public class  ServiceDemo1 {
-
+public class FeginApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ServiceDemo1.class, args);
-        log.info("Demo1工程已启动！");
+        SpringApplication.run(FeginApplication.class, args);
+        log.info("FeginApplication工程已启动！");
     }
+
 
 }

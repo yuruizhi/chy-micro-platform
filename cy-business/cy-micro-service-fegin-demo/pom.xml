@@ -9,40 +9,19 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cy-micro-service-demo-1</artifactId>
-    <description>demo1</description>
+    <artifactId>cy-micro-service-fegin-demo</artifactId>
 
     <dependencies>
-        <!-- 公共实体类模块 -->
-        <!--<dependency>
-            <groupId>com.changyi</groupId>
-            <artifactId>cy-config</artifactId>
-            <version>1.0.0</version>
-        </dependency>-->
-        <!-- common-core -->
+
         <dependency>
             <groupId>com.changyi</groupId>
-            <artifactId>common-core</artifactId>
+            <artifactId>cy-swagger2-spring-boot-starter</artifactId>
         </dependency>
-        <!-- redis -->
-        <dependency>
-            <groupId>com.changyi</groupId>
-            <artifactId>cy-redis-spring-boot-starter</artifactId>
-        </dependency>
+
         <!-- unified-dispose -->
         <dependency>
             <groupId>com.changyi</groupId>
             <artifactId>cy-unified-dispose-spring-boot-starter</artifactId>
-        </dependency>
-        <!-- log -->
-        <dependency>
-            <groupId>com.changyi</groupId>
-            <artifactId>cy-log-spring-boot-starter</artifactId>
-        </dependency>
-        <!-- swagger -->
-        <dependency>
-            <groupId>com.changyi</groupId>
-            <artifactId>cy-swagger2-spring-boot-starter</artifactId>
         </dependency>
 
         <!-- spring-boot-web -->
@@ -55,11 +34,7 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        <!-- spring-context -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-        </dependency>
+
         <!-- spring-actuator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -71,6 +46,11 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
-    </dependencies>
+        <!-- sentinel 限流熔断 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
 
+    </dependencies>
 </project>
