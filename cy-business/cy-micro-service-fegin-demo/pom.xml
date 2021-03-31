@@ -9,44 +9,19 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cy-micro-service-demo-1</artifactId>
-    <description>demo1</description>
+    <artifactId>cy-micro-service-fegin-demo</artifactId>
 
     <dependencies>
-        <!-- core -->
-        <dependency>
-            <groupId>com.changyi</groupId>
-            <artifactId>cy-common-core</artifactId>
-        </dependency>
-        <!-- db -->
-        <dependency>
-            <groupId>com.changyi</groupId>
-            <artifactId>cy-db-spring-boot-starter</artifactId>
-        </dependency>
-        <!-- redis -->
-        <dependency>
-            <groupId>com.changyi</groupId>
-            <artifactId>cy-redis-spring-boot-starter</artifactId>
-        </dependency>
-        <!-- unified-dispose -->
-        <dependency>
-            <groupId>com.changyi</groupId>
-            <artifactId>cy-unified-dispose-spring-boot-starter</artifactId>
-        </dependency>
-        <!-- log -->
-        <dependency>
-            <groupId>com.changyi</groupId>
-            <artifactId>cy-log-spring-boot-starter</artifactId>
-        </dependency>
-        <!-- swagger -->
+
         <dependency>
             <groupId>com.changyi</groupId>
             <artifactId>cy-swagger2-spring-boot-starter</artifactId>
         </dependency>
-        <!-- nacos -->
+
+        <!-- unified-dispose -->
         <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <groupId>com.changyi</groupId>
+            <artifactId>cy-unified-dispose-spring-boot-starter</artifactId>
         </dependency>
 
         <!-- spring-boot-web -->
@@ -54,19 +29,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!-- spring-context -->
+        <!-- nacos -->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
+
         <!-- spring-actuator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
         <dependency>
@@ -74,6 +46,11 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
-    </dependencies>
+        <!-- sentinel 限流熔断 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
 
+    </dependencies>
 </project>

@@ -1,0 +1,44 @@
+server:
+  port: 9081
+
+spring:
+  application:
+    name: fegin-demo
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+
+demo1-center:
+  ribbon:
+    ConnectTimeout: 600
+    ReadTimeout: 60000
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+demo2:  #服务名，指定具体服务的配置信息
+  ribbon:
+    ConnectTimeout: 600
+    ReadTimeout: 9000  #读取超时，时间单位ms
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+    MaxAutoRetries: 1  #单个节点重试最大值,不包含第一次请求
+    MaxAutoRetriesNextServer: 2 #重试发生，更换节点数最大值
+    OkToRetryOnAllOperations: true #所有操作都重试
+ribbon: # 全局配置
+  ConnectTimeout: 600
+  ReadTimeout: 11000  #读取超时，时间单位ms
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #路由规则
+  MaxAutoRetries: 1  #单个节点重试最大值,不包含第一次请求
+  MaxAutoRetriesNextServer: 1 #重试负载均衡其他的实例最大重试次数,不包括首次调用
+  OkToRetryOnAllOperations: true #所有操作都重试
+
+feign:
+  sentinel:
+    enabled: true
+
+swagger:
+  enabled: true
+  title: 搜索中心
+  description: 搜索中心接口文档
+  version: 1.0
+  base-package: com.changyi.fegin.controller
