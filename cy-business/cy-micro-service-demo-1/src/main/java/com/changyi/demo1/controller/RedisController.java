@@ -26,7 +26,7 @@ public class RedisController {
 
     @GetMapping("/{roleCodes}")
     public String home(@PathVariable String roleCodes) {
-        return environment.getProperty("local.server.port");
+        return environment.getProperty("local.server.name") + environment.getProperty("local.server.port");
     }
 
 

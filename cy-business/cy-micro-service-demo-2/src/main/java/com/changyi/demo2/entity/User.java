@@ -1,4 +1,4 @@
-package demo;
+package com.changyi.demo2.entity;
 
 import lombok.Data;
 
