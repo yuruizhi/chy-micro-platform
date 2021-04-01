@@ -4,7 +4,7 @@
 <mapper namespace="com.changyi.demo1.mapper.SysUserMapper">
 	<sql id="where">
 		<where>
-			t.is_del=0
+			t.is_del = 0
 			<if test="u.id != null and u.id != ''">
 				and t.id like concat('%', #{u.id}, '%')
 			</if>
@@ -35,9 +35,10 @@
 		</where>
 	</sql>
 
-	<select id="findList" resultType="com.changyi.demo1.model.SysUser">
+	<select id="findList" resultType="com.changyi.demo1.entity.SysUser">
 		select * from sys_user t
 		<include refid="where" />
 		order by t.id desc
 	</select>
+
 </mapper>

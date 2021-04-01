@@ -2,22 +2,26 @@ package com.changyi.demo1.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.changyi.cloud.dispose.starter.Result;
 import com.changyi.common.core.constant.CommonConstant;
 import com.changyi.common.core.lock.DistributedLock;
 import com.changyi.common.core.model.PageResult;
 import com.changyi.common.core.service.impl.SuperServiceImpl;
+import com.changyi.common.dispose.Result;
+import com.changyi.demo1.entity.SysUser;
 import com.changyi.demo1.mapper.SysUserMapper;
-import com.changyi.demo1.model.SysUser;
+import com.changyi.demo1.model.UserDTO;
+import com.changyi.demo1.model.UserVO;
 import com.changyi.demo1.service.ISysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +34,7 @@ public class SysUserServiceImpl extends SuperServiceImpl<SysUserMapper, SysUser>
 
     private final static String LOCK_KEY_USERNAME = "username:";
 
-   /* @Autowired
+    /*@Autowired
     private DistributedLock lock;
 
     @Autowired
@@ -38,63 +42,72 @@ public class SysUserServiceImpl extends SuperServiceImpl<SysUserMapper, SysUser>
 
 
     @Override
-    public SysUser findByMobile(String username) {
-        return this.selectByMobile(username);
-    }
-
-    /**
-     * 根据手机号查询用户
-     *
-     * @param mobile
-     * @return
-     */
-    @Override
-    public SysUser selectByMobile(String mobile) {
+    public UserVO findUserById(String id) {
         List<SysUser> users = baseMapper.selectList(
-                new QueryWrapper<SysUser>().eq("mobile", mobile)
+                new QueryWrapper<SysUser>().eq("id", id)
         );
-        return getUser(users);
+        SysUser sysUser = null;
+        if (null != users && 0 < users.size()) {
+            sysUser = users.get(0);
+        }
+        if (null != sysUser) {
+            return getUserVO(sysUser);
+        }
+        return null;
     }
 
-    private SysUser getUser(List<SysUser> users) {
-        SysUser user = null;
-        if (users != null && !users.isEmpty()) {
-            user = users.get(0);
+
+    public UserVO getUserVO(SysUser sysUser) {
+        if (sysUser != null) {
+            UserVO userVO = new UserVO();
+            BeanUtils.copyProperties(sysUser, userVO);
+            return userVO;
         }
-        return user;
+        return null;
     }
 
     @Override
-    public PageResult<SysUser> findUsers(Map<String, Object> params) {
+    public PageResult<UserVO> findUsers(Map<String, Object> params) {
         Page<SysUser> page = new Page<>(MapUtils.getInteger(params, "page"), MapUtils.getInteger(params, "limit"));
-        List<SysUser> list = baseMapper.findList(page, params);
+
         long total = page.getTotal();
-        return PageResult.<SysUser>builder().data(list).code(0).count(total).build();
+
+        List<SysUser> list = baseMapper.findList(page, params);
+        List<UserVO> userVOList = new ArrayList<>();
+        for (SysUser sysUser : list) {
+            UserVO userVO = new UserVO();
+            BeanUtils.copyProperties(sysUser, userVO);
+            userVOList.add(userVO);
+        }
+        return PageResult.<UserVO>builder().data(userVOList).code(0).count(total).build();
     }
 
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public Result saveOrUpdateUser(SysUser sysUser) throws Exception {
+    public Result saveOrUpdateUser(UserDTO userDTO) throws Exception {
+        SysUser sysUser = new SysUser();
+        BeanUtils.copyProperties(userDTO, sysUser);
         if (sysUser.getId() == null) {
             if (StringUtils.isBlank(sysUser.getType())) {
                 sysUser.setType("1");
             }
-            /*sysUser.setPassword(passwordEncoder.encode(CommonConstant.DEF_USER_PASSWORD));*/
-            sysUser.setPassword("123456");
+            // sysUser.setPassword(passwordEncoder.encode(CommonConstant.DEF_USER_PASSWORD));
+            sysUser.setPassword(CommonConstant.DEF_USER_PASSWORD);
             sysUser.setEnabled(Boolean.TRUE);
         }
         String username = sysUser.getUsername();
-        boolean result = true;/*super.saveOrUpdateIdempotency(sysUser, lock
+        /*boolean result = super.saveOrUpdateIdempotency(sysUser, lock
                 , LOCK_KEY_USERNAME + username, new QueryWrapper<SysUser>().eq("username", username)
                 , username + "已存在");*/
+        boolean result = super.saveOrUpdate(sysUser);
 
         return result ? Result.ofSuccess(sysUser) : Result.ofFail("111", "操作失败");
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public boolean delUser(Long id) {
+    public boolean delUser(String id) {
         return baseMapper.deleteById(id) > 0;
     }
 

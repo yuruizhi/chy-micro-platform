@@ -1,6 +1,6 @@
 package com.changyi.demo1.controller;
 
-import com.changyi.log.trace.TraceUtil;
+import com.changyi.common.log.trace.TraceUtil;
 import com.changyi.demo1.service.TestService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -1,9 +1,11 @@
 package com.changyi.demo1.service;
 
-import com.changyi.cloud.dispose.starter.Result;
+import com.changyi.common.dispose.Result;
 import com.changyi.common.core.model.PageResult;
 import com.changyi.common.core.service.ISuperService;
-import com.changyi.demo1.model.SysUser;
+import com.changyi.demo1.entity.SysUser;
+import com.changyi.demo1.model.UserDTO;
+import com.changyi.demo1.model.UserVO;
 
 import java.util.Map;
 
@@ -13,21 +15,34 @@ import java.util.Map;
  */
 public interface ISysUserService extends ISuperService<SysUser> {
 
-	SysUser findByMobile(String username);
-
-    SysUser selectByMobile(String mobile);
+    /**
+     * 新增或更新用户
+     *
+     * @param userDTO
+     * @return Result
+     * @throws Exception
+     */
+    Result saveOrUpdateUser(UserDTO userDTO) throws Exception;
 
     /**
-     * 用户列表
+     * 查询用户.
+     * @param id
+     * @return UserVO
+     * @throws Exception
+     */
+    UserVO findUserById(String id);
+
+    /**
+     * 用户分页列表.
      * @param params
-     * @return
+     * @return PageResult
      */
-    PageResult<SysUser> findUsers(Map<String, Object> params);
-
-    Result saveOrUpdateUser(SysUser sysUser) throws Exception;
+    PageResult<UserVO> findUsers(Map<String, Object> params);
 
     /**
-     * 删除用户
+     * 删除用户.
+     * @param id
+     * @return boolean
      */
-    boolean delUser(Long id);
+    boolean delUser(String id);
 }

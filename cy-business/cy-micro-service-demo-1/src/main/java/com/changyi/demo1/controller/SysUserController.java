@@ -1,14 +1,18 @@
 package com.changyi.demo1.controller;
 
 
-import com.changyi.demo1.model.SysUser;
+import com.changyi.common.dispose.Result;
+import com.changyi.common.core.model.PageResult;
+import com.changyi.demo1.model.UserDTO;
+import com.changyi.demo1.model.UserVO;
 import com.changyi.demo1.service.ISysUserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * 用户模块API.
@@ -17,25 +21,42 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2021.3.30
  */
 @Slf4j
-@RestController
 @Api(tags = "用户模块api")
+@RestController
+@RequestMapping("/users")
 public class SysUserController {
-
 
     @Autowired
     private ISysUserService appUserService;
 
 
-    /**
-     * 通过手机号查询用户信息
-     *
-     * @param mobile 手机号
-     */
-    @GetMapping(value = "/users/mobile", params = "mobile")
-    @ApiOperation(value = "根据手机号查询用户")
-    public SysUser findByMobile(String mobile) {
-        return appUserService.findByMobile(mobile);
+    @ApiOperation(value = "新增或更新用户")
+    @CacheEvict(value = "user", key = "#sysUser.username")
+    @PostMapping("/saveOrUpdate")
+    public void saveOrUpdate(@RequestBody UserDTO userDTO) throws Exception {
+        appUserService.saveOrUpdateUser(userDTO);
     }
 
+    @ApiOperation(value = "查询用户")
+    @GetMapping(value = "/{id}")
+    public UserVO findById(@ApiParam("用户ID") @PathVariable String id) {
+        return appUserService.findUserById(id);
+    }
+
+
+    @ApiOperation(value = "删除用户")
+    @DeleteMapping(value = "/{id}")
+    public void delete(@PathVariable String id) {
+        appUserService.delUser(id);
+    }
+    @ApiOperation(value = "用户查询列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "page", value = "分页起始位置", required = true, dataType = "Integer"),
+            @ApiImplicitParam(name = "limit", value = "分页结束位置", required = true, dataType = "Integer")
+    })
+    @GetMapping("/")
+    public PageResult<UserVO> findUsers(@RequestParam Map<String, Object> params) {
+        return appUserService.findUsers(params);
+    }
 
 }

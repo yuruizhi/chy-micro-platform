@@ -44,6 +44,7 @@ cy:
       - /oauth/**
       - /sso/**
       - /redis/**
+      - /users/**
       - /demo1/**
       - /demo2/**
   swagger-agg:

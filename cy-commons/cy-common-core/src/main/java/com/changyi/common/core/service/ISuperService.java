@@ -25,7 +25,8 @@ public interface ISuperService<T> extends IService<T> {
      * @param lockKey      锁的key
      * @param countWrapper 判断是否存在的条件
      * @param msg          对象已存在提示信息
-     * @return
+     * @return {{boolean}}
+     * @throws Exception
      */
     boolean saveIdempotency(T entity, DistributedLock locker, String lockKey, Wrapper<T> countWrapper, String msg) throws Exception;
 

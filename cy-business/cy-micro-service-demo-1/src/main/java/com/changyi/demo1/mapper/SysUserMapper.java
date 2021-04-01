@@ -2,7 +2,7 @@ package com.changyi.demo1.mapper;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.changyi.common.db.mapper.SuperMapper;
-import com.changyi.demo1.model.SysUser;
+import com.changyi.demo1.entity.SysUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
