@@ -1,14 +1,12 @@
 package com.changyi.demo1.controller;
 
-import com.changyi.log.trace.TraceUtil;
+import com.changyi.demo1.entity.Test1Entity;
 import com.changyi.demo1.service.TestService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @Slf4j
@@ -29,14 +27,32 @@ public class DemoController {
 
 
     @GetMapping("/t2")
-    public String t2() {
+    public Object t2() {
 
         log.debug("demo11111111111111");
         log.error("123312313123");
 
         testService.test1();
-        System.out.println(TraceUtil.getTraceId()+"----");
         log.error("123312313123");
-        return "demo1";
+        Test1Entity result = new Test1Entity();
+        result.setA(111);
+        result.setB("nnb");
+        result.setC(223L);
+        return result;
+    }
+
+
+    @ApiOperation(value = "Demo1 api t3")
+    @RequestMapping(value = "/t3",method = RequestMethod.POST)
+    public Test1Entity t3(@RequestBody Test1Entity t) {
+        t.setA(t.getA()+1);
+        return t;
+    }
+
+    @ApiOperation(value = "Demo1 api t4")
+    @PostMapping("/t4")
+    public Test1Entity t4(@RequestBody Test1Entity t) {
+        t.setA(t.getA()+1);
+        return t;
     }
 }

@@ -1,4 +1,4 @@
-package com.changyi.log.trace;
+package com.changyi.common.core.utils;
 
 import org.slf4j.MDC;
 

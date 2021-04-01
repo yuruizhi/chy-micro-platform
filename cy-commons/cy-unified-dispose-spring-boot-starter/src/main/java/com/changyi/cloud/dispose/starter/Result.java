@@ -1,6 +1,7 @@
 package com.changyi.cloud.dispose.starter;
 
 import com.changyi.common.core.base.IErrorCodeEnum;
+import com.changyi.common.core.utils.TraceUtil;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -23,6 +24,9 @@ public class Result<T> implements Serializable {
      * 服务器当前时间戳
      */
     private Long timestamp = System.currentTimeMillis();
+
+    private String traceId = TraceUtil.getTraceId();
+
 
     /**
      * 成功数据
