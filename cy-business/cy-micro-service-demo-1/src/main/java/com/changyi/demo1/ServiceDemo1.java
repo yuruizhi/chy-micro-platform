@@ -5,14 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.context.annotation.ComponentScan;
 
 @Slf4j
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableGlobalDispose
 //@ComponentScan({"com.changyi.demo1", "com.changyi.common.core"})
-public class  ServiceDemo1 {
+public class ServiceDemo1 {
 
     public static void main(String[] args) {
         SpringApplication.run(ServiceDemo1.class, args);

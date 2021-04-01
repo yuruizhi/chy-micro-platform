@@ -1,5 +1,6 @@
 package com.changyi.demo2.controller;
 
+import com.changyi.demo2.entity.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,7 @@ public class DemoController {
 	}
 
 	@PostMapping(value = "cy/two")
-	public String two(@Validated @RequestBody demo.User user) {
+	public String two(@Validated @RequestBody User user) {
 		log.info("入参：", user);
 		return "two";
 	}

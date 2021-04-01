@@ -17,6 +17,7 @@
         <module>backend-admin</module>
         <module>cy-micro-service-demo-1</module>
         <module>cy-micro-service-demo-2</module>
+        <module>cy-micro-service-fegin-demo</module>
     </modules>
 
 
