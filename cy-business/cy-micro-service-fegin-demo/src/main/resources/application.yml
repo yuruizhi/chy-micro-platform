@@ -3,13 +3,16 @@ server:
 
 spring:
   application:
-    name: fegin-demo
+    name: cy-feign
   cloud:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
       config:
         server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
 
 demo1-center:
   ribbon:

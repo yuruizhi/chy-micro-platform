@@ -33,7 +33,7 @@ public class RedisController {
     @Cacheable(value = "test2", key = "#roleCodes")
     @GetMapping("/2/{roleCodes}")
     public String home2(@PathVariable String roleCodes) {
-        return "demo2";
+        return "demo2"+roleCodes;
     }
 
     @Cacheable(value = "begin", keyGenerator = "DefaultKeyGenerator")

@@ -1,13 +1,14 @@
 package com.changyi.fegin.controller;
 
 
-import com.changyi.cloud.dispose.starter.Result;
+import com.changyi.common.dispose.Result;
 import com.changyi.common.core.utils.JsonUtil;
 import com.changyi.fegin.entity.User;
 import com.changyi.fegin.service.Demo1ServiceFegin;
 import com.changyi.fegin.service.Demo2ServiceFegin;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 

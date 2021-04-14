@@ -1,6 +1,6 @@
 package com.changyi.fegin.service;
 
-import com.changyi.cloud.dispose.starter.Result;
+import com.changyi.common.dispose.Result;
 import com.changyi.fegin.entity.User;
 import org.springframework.stereotype.Component;
 
