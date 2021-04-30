@@ -3,7 +3,7 @@ package com.changyi.common.core.exception;
 /**
  * 幂等性异常
  *
- * @author zlt
+ * @author YuRuizhi
  */
 public class IdempotencyException extends RuntimeException {
 

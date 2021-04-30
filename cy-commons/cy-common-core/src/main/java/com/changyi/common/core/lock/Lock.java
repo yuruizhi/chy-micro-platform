@@ -4,11 +4,11 @@ import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author zlt
+ * @author YuRuizhi
  * @date 2020/6/6
  * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
+ * 
+ * 
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

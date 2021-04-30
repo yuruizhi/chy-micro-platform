@@ -7,7 +7,7 @@ import com.changyi.common.core.lock.DistributedLock;
 /**
  * service接口父类.
  *
- * @author Henry.yu
+ * @author YuRuizhi
  * @date 2021.3.25
  */
 public interface ISuperService<T> extends IService<T> {

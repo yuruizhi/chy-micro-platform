@@ -18,11 +18,8 @@ import springfox.documentation.swagger.web.UiConfiguration;
 import springfox.documentation.swagger.web.UiConfigurationBuilder;
 
 /**
- * @author zlt
- * @date 2019/10/5
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
+ * @author YuRuizhi
+ * @date 2021.3.24
  */
 @RestController
 @RequestMapping("/swagger-resources" )

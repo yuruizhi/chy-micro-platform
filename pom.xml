@@ -42,6 +42,7 @@
         <cy-redis-spring-boot-starter.version>1.0.0</cy-redis-spring-boot-starter.version>
         <cy-log-spring-boot-starter.version>1.0.0</cy-log-spring-boot-starter.version>
         <cy-swagger2-spring-boot-starter.version>1.0.0</cy-swagger2-spring-boot-starter.version>
+        <cy-sentinel-spring-boot-starter.version>1.0.0</cy-sentinel-spring-boot-starter.version>
         <cy-unified-dispose-spring-boot-starter.version>1.0.0</cy-unified-dispose-spring-boot-starter.version>
         <cy-common-core.version>1.0.0</cy-common-core.version>
 
@@ -124,6 +125,11 @@
                 <groupId>com.changyi</groupId>
                 <artifactId>cy-db-spring-boot-starter</artifactId>
                 <version>${cy-db-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.changyi</groupId>
+                <artifactId>cy-sentinel-spring-boot-starter</artifactId>
+                <version>${cy-sentinel-spring-boot-starter.version}</version>
             </dependency>
 
             <!-- spring boot -->

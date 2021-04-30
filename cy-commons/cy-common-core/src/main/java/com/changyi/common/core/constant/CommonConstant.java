@@ -3,7 +3,7 @@ package com.changyi.common.core.constant;
 /**
  * 全局公共常量
  *
- * @author zlt
+ * @author YuRuizhi
  * @date 2018/10/29
  */
 public interface CommonConstant {

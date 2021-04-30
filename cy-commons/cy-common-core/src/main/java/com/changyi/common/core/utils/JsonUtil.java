@@ -19,7 +19,7 @@ import java.util.Map;
  * 基于jackson的json工具类
  *
  * @author ZhangHao
- * @date 2021/03/18
+ * @date 2021.3.18
  */
 @Slf4j
 public final class JsonUtil {

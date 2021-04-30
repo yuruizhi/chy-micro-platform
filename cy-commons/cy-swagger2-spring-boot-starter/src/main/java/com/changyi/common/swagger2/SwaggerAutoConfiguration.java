@@ -28,11 +28,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * @author zlt
- * @date 2018/11/18 9:22
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
+ * @author YuRuizhi
+ * @date 2021.3.19
  */
 @Configuration
 @EnableSwagger2

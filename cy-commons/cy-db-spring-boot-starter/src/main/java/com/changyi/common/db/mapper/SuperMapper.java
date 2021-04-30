@@ -10,7 +10,9 @@ import java.util.Map;
 
 /**
  * mapper 父类，注意这个类不要让 mp 扫描到！！
- * @author zlt
+ *
+ * @author YuRuizhi
+ * @date 2021.3.25
  */
 public interface SuperMapper<M> extends BaseMapper<M> {
 

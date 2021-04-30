@@ -10,7 +10,7 @@ import com.changyi.demo1.model.UserVO;
 import java.util.Map;
 
 /**
- * @author Henry.yu
+ * @author YuRuizhi
  * @date 2021.3.30
  */
 public interface ISysUserService extends ISuperService<SysUser> {

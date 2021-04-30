@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * service实现父类.
  *
- * @author Henry.yu
+ * @author YuRuizhi
  * @date 2021.3.25
  */
 public class SuperServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> implements ISuperService<T> {

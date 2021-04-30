@@ -7,13 +7,10 @@ import org.apache.ibatis.reflection.MetaObject;
 import java.util.Date;
 
 /**
- * 自定义填充公共字段
+ * 自定义填充公共字段.
  *
- * @author zlt
- * @date 2018/12/11
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
+ * @author YuRuizhi
+ * @date 2021.3.26
  */
 public class DateMetaObjectHandler implements MetaObjectHandler {
     private MybatisPlusAutoFillProperties autoFillProperties;

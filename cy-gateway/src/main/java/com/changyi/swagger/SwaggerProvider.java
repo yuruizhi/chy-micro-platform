@@ -18,11 +18,8 @@ import java.util.Set;
 /**
  * 跨域配置
  *
- * @author zlt
- * @date 2019/10/5
- * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
+ * @author YuRuizhi
+ * @date 2021.3.24
  */
 @Component
 @EnableConfigurationProperties(SwaggerAggProperties.class)

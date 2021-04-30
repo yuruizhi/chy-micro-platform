@@ -43,6 +43,11 @@
             <groupId>com.changyi</groupId>
             <artifactId>cy-swagger2-spring-boot-starter</artifactId>
         </dependency>
+        <!-- sentinel -->
+        <dependency>
+            <groupId>com.changyi</groupId>
+            <artifactId>cy-sentinel-spring-boot-starter</artifactId>
+        </dependency>
         <!-- nacos -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
